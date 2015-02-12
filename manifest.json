@@ -1,0 +1,25 @@
+{
+    "manifest_version": 2,
+
+    "name": "Facebook Friend Name Converter",
+    "description": "Change the names of your friends to cooler ones!",
+    "version": "1.0",
+    "author": "claudius",
+    "browser action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html",
+        "default_title": "Converter is working!"
+    },
+    "content_scripts": [
+      {
+        "run_at": "document_end",
+        "matches": [
+          "https://www.facebook.com/*"
+        ],
+        "js": [
+          "jquery-2.1.3.min.js",
+          "names.js",
+          "content.js"     ]
+      }
+    ]
+}
