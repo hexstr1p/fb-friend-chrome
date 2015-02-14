@@ -6,14 +6,19 @@
 'use strict';
 
 // This get my code runs every 10 ms. So that it can catch any changes happened on the uesr's page.
-var myVar = setInterval(function () {myTimer()}, 10);
+var myVar = setInterval(function() {myTimer()}, 10);
+	//setInterval is something already in javascript; it executes a function every so many seconds
+	//myTimer() hasn't been declared yet, but it will be below -- javascript lets you do weird stuff like that
 
 // This is a hash table to store all the names I have changed.
-var changed_names = new Object();
+var changed_names = new Object(); //this is declaring an object called changed_names
 
 function myTimer() {
 	// Change names in chat list
 	var friend_names = document.getElementsByClassName('_55lr');
+	//the document. calls on the document object model of html
+	//it grabs the elements in the _55lr part of an html page
+	//it's a built in part of javascript
 
 	var index;
 	for (index = 0; index < friend_names.length; ++index)  {
