@@ -1,39 +1,42 @@
 /*
-* The original credit for this goes to zhanghan.
-* Myself, claudius (or lunete on github), just modified it.
+* The original credit and framework for this goes to zhanghan (on github).
+* Myself, claudius (or lunete on github), is just modifying it while steadily learning javascript.
 */
 
 'use strict';
 
 // This get my code runs every 10 ms. So that it can catch any changes happened on the uesr's page.
-var myVar = setInterval(function() {myTimer()}, 10);
+var myVar = setInterval(function() {nameUpdate()}, 10);
 	//setInterval is something already in javascript; it executes a function every so many seconds
 	//myTimer() hasn't been declared yet, but it will be below -- javascript lets you do weird stuff like that
 
-// This is a hash table to store all the names I have changed.
-var changed_names = new Object(); //this is declaring an object called changed_names
+var changed_names = new Object(); //this is declaring an object called changed_names, it will store all the changed names
 
-function myTimer() {
-	// Change names in chat list
+function nameUpdate() {
+	// Change names in chat list  /********************************/
 	var friend_names = document.getElementsByClassName('_55lr');
 	//the document. calls on the document object model of html
 	//it grabs the elements in the _55lr part of an html page
-	//it's a built in part of javascript
+	//the whole document.getElementsByClassName is a built in part of javascript
 
 	var index;
 	for (index = 0; index < friend_names.length; ++index)  {
-		// This makes sure I won't change names that are already on my celebreits list
-		if (celebreties.indexOf(friend_names[index].textContent) != -1) {
+
+		// This makes sure it won't change names that are already on the list of cooler ones
+		if (handles.indexOf(friend_names[index].textContent) != -1) {
+			//.indexOf() returns the position of the first occurance of a specified value in a string
+			//.textContent sets or returns the text content of the specified node, and all of its descendants
 			continue;
 		}
 
 		// If I have changed target name before, it should be on the hash table. So a hash table lookup is necessary. If there is a match, I have to change target name to the same as the one in hash table. This is to guarentee consistency.
 		if (friend_names[index].textContent in changed_names) {
 			friend_names[index].textContent = changed_names[friend_names[index].textContent];
-		} else {
-			var random_number = Math.floor(Math.random() * celebreties.length);
-			changed_names[friend_names[index].textContent] = celebreties[random_number];
-			friend_names[index].textContent = celebreties[random_number];
+		}
+		else {
+			var random_number = Math.floor(Math.random() * handles.length);
+			changed_names[friend_names[index].textContent] = handles[random_number];
+			friend_names[index].textContent = handles[random_number];
 		}
 
 
@@ -43,17 +46,18 @@ function myTimer() {
 
 	// Change names in chat window
 	friend_names = document.getElementsByClassName('titlebarText');
+	//the respective part of the part that has the chat window
 	for (index = 0; index < friend_names.length; ++index)  {
-		if (celebreties.indexOf(friend_names[index].textContent) != -1) {
+		if (handles.indexOf(friend_names[index].textContent) != -1) {
 			continue;
 		}
-
 		if (friend_names[index].textContent in changed_names) {
 			friend_names[index].textContent = changed_names[friend_names[index].textContent];
-		} else {
-			var random_number = Math.floor(Math.random() * celebreties.length);
-			changed_names[friend_names[index].textContent] = celebreties[random_number];
-			friend_names[index].textContent = celebreties[random_number];
+		}
+		else {
+			var random_number = Math.floor(Math.random() * handles.length);
+			changed_names[friend_names[index].textContent] = handles[random_number];
+			friend_names[index].textContent = handles[random_number];
 		}
 	}
 
@@ -61,25 +65,29 @@ function myTimer() {
 
 	// Change names in comments
 	var temp_names = document.querySelectorAll('span');
-	friend_names = [];
-	var comments_pattern = new RegExp("\\$author");
+	friend_names = []; //resetting friend_names here because there is now temp_names
+	var comments_pattern = new RegExp("\\$author"); //hits the author line of the comments
 	for (var i = temp_names.length - 1; i >= 0; i--) {
 		if(comments_pattern.test(temp_names[i].getAttribute('data-reactid'))) {
+			//.test() returns true if it finds a match in a string
+			//.getAttribtue returns the value of the attribute with the specified name
 			friend_names.push(temp_names[i]);
+			//.push() adds new items to the end of an array and returns the new length
 		}
 	};
 
+	//now to actually change them
 	for (index = 0; index < friend_names.length; ++index)  {
-		if (celebreties.indexOf(friend_names[index].textContent) != -1) {
+		if (handles.indexOf(friend_names[index].textContent) != -1) {
 			continue;
 		}
-
 		if (friend_names[index].textContent in changed_names) {
 			friend_names[index].textContent = changed_names[friend_names[index].textContent];
-		} else {
-			var random_number = Math.floor(Math.random() * celebreties.length);
-			changed_names[friend_names[index].textContent] = celebreties[random_number];
-			friend_names[index].textContent = celebreties[random_number];
+		}
+		else {
+			var random_number = Math.floor(Math.random() * handles.length);
+			changed_names[friend_names[index].textContent] = handles[random_number];
+			friend_names[index].textContent = handles[random_number];
 		}
 	}
 
@@ -97,16 +105,16 @@ function myTimer() {
 	};
 
 	for (index = 0; index < friend_names.length; ++index)  {
-		if (celebreties.indexOf(friend_names[index].textContent) != -1) {
+		if (handles.indexOf(friend_names[index].textContent) != -1) {
 			continue;
 		}
-
 		if (friend_names[index].textContent in changed_names) {
 			friend_names[index].textContent = changed_names[friend_names[index].textContent];
-		} else {
-			var random_number = Math.floor(Math.random() * celebreties.length);
-			changed_names[friend_names[index].textContent] = celebreties[random_number];
-			friend_names[index].textContent = celebreties[random_number];
+		}
+		else {
+			var random_number = Math.floor(Math.random() * handles.length);
+			changed_names[friend_names[index].textContent] = handles[random_number];
+			friend_names[index].textContent = handles[random_number];
 		}
 	}
 
@@ -115,16 +123,16 @@ function myTimer() {
 	// Change names in hovercard!!!!!!
 	friend_names = document.getElementsByClassName('ellipsis');
 	for (index = 0; index < friend_names.length; ++index)  {
-		if (celebreties.indexOf(friend_names[index].textContent) != -1) {
+		if (handles.indexOf(friend_names[index].textContent) != -1) {
 			continue;
 		}
-
 		if (friend_names[index].textContent in changed_names) {
 			friend_names[index].textContent = changed_names[friend_names[index].textContent];
-		} else {
-			var random_number = Math.floor(Math.random() * celebreties.length);
-			changed_names[friend_names[index].textContent] = celebreties[random_number];
-			friend_names[index].textContent = celebreties[random_number];
+		}
+		else {
+			var random_number = Math.floor(Math.random() * handles.length);
+			changed_names[friend_names[index].textContent] = handles[random_number];
+			friend_names[index].textContent = handles[random_number];
 		}
 	}
 
@@ -133,24 +141,24 @@ function myTimer() {
 	// Change names in profile homepage title
 	friend_names = document.getElementsByClassName('_8_2');
 	for (index = 0; index < friend_names.length; ++index)  {
-		if (celebreties.indexOf(friend_names[index].textContent) != -1) {
+		if (handles.indexOf(friend_names[index].textContent) != -1) {
 			continue;
 		}
-
 		if (friend_names[index].textContent in changed_names) {
 			friend_names[index].textContent = changed_names[friend_names[index].textContent];
-		} else {
-			var random_number = Math.floor(Math.random() * celebreties.length);
-			changed_names[friend_names[index].textContent] = celebreties[random_number];
-			friend_names[index].textContent = celebreties[random_number];
+		}
+		else {
+			var random_number = Math.floor(Math.random() * handles.length);
+			changed_names[friend_names[index].textContent] = handles[random_number];
+			friend_names[index].textContent = handles[random_number];
 		}
 	}
-}
+} //HERE the function nameUpdate() ends
 
 //the names are just from a bunch of video games and other weeaboo stuff I love
-//also because I live under a heavy rock and know no celebreties's names
+//also because I live under a heavy rock and know no celeberties's names
 //#noshame
-var celebreties = ['Travis Touchdown',
+var handles = ['Travis Touchdown',
 'Sylvia Christel',
 'Henry Cooldown',
 'Holly Summers',

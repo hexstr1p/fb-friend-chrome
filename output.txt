@@ -1,9 +1,4 @@
-
-'use strict';
-//the names are just from a bunch of video games and other weeaboo stuff I love
-//also because I live under a heavy rock and know no celebreties's names
-//#noshame
-var handles = ['Travis Touchdown',
+'Travis Touchdown',
 'Sylvia Christel',
 'Henry Cooldown',
 'Holly Summers',
@@ -120,4 +115,3 @@ var handles = ['Travis Touchdown',
 'Selen Vinland',
 'Garl Vinland',
 'Maiden Astraea',
-];
