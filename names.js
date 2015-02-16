@@ -2,7 +2,6 @@
 'use strict';
 //the names are just from a bunch of video games and other weeaboo stuff I love
 //also because I live under a heavy rock and know no celebreties's names
-//#noshame
 var handles = ['Travis Touchdown',
 'Sylvia Christel',
 'Henry Cooldown',
